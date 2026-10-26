@@ -1,1 +1,0 @@
-# Portal-GIS-Energ-tico
