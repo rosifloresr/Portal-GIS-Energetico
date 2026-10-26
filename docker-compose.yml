@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  db_gis:
+    image: postgis/postgis:15-3.3
+    container_name: postgres_gis_energetica
+    environment:
+      POSTGRES_USER: gis_user
+      POSTGRES_PASSWORD: gis_secure_password_2026
+      POSTGRES_DB: bd_activos_energia
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
