@@ -1,0 +1,92 @@
+:root {
+  --apple-bg: #fbfbfd;
+  --apple-card-bg: rgba(255, 255, 255, 0.8);
+  --apple-text: #1d1d1f;
+  --apple-subtext: #86868b;
+  --apple-accent: #0066cc;
+  --apple-border: #d2d2d7;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif;
+  background-color: var(--apple-bg);
+  color: var(--apple-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.apple-container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.apple-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.apple-header h1 {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+
+.apple-subtitle {
+  font-size: 17px;
+  color: var(--apple-subtext);
+  margin-top: 0;
+}
+
+.apple-card {
+  background: var(--apple-card-bg);
+  backdrop-filter: blur(20px);
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.apple-button {
+  background-color: var(--apple-accent);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 980px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.apple-button:hover {
+  opacity: 0.9;
+  transform: scale(1.01);
+}
+
+.apple-select {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--apple-border);
+  font-size: 14px;
+  background-color: #fff;
+}
+
+.badge-connected {
+  color: #34c759;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.status-tag {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.status-operativo { background: #eefbf1; color: #248a3d; }
+.status-en-falla { background: #ffebeb; color: #ff3b30; }
+.status-en-revision { background: #fff8e6; color: #ff9500; }
