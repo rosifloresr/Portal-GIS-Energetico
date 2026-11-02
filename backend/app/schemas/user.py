@@ -13,7 +13,9 @@ class UserCreate(BaseModel):
     @field_validator("username")
     @classmethod
     def username_valido(cls, v: str) -> str:
-        v = v.strip()
+        # Se guarda en minúsculas: si no, "Rosi" y "rosi" serían cuentas
+        # distintas y alguien podría suplantar a otra persona con un nombre casi igual.
+        v = v.strip().lower()
         if not re.fullmatch(r"[A-Za-z0-9_.-]{3,30}", v):
             raise ValueError("Solo letras, números, punto, guion y guion bajo.")
         return v
