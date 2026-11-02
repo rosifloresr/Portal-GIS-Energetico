@@ -1,11 +1,18 @@
 """Valores permitidos del dominio, definidos en la especificación técnica (Fase 0).
 
-Se centralizan acá para que el ETL, la API y los roles usen la misma fuente.
+Fuente única: la API (schemas), el ETL y los roles importan de acá.
 """
+from typing import Literal, get_args
 
-TIPOS_PERMITIDOS = {"Transformador", "Poste", "Subestacion"}
-ESTADOS_PERMITIDOS = {"Operativo", "En Revision", "En Falla"}
+TipoActivo = Literal["Transformador", "Poste", "Subestacion"]
+EstadoActivo = Literal["Operativo", "En Revision", "En Falla"]
+Rol = Literal["lector", "operador", "admin"]
 
-ROLE_LECTOR = "lector"
-ROLE_OPERADOR = "operador"
-ROLE_ADMIN = "admin"
+# Se derivan de los Literal para que nunca puedan desincronizarse.
+TIPOS_PERMITIDOS = frozenset(get_args(TipoActivo))
+ESTADOS_PERMITIDOS = frozenset(get_args(EstadoActivo))
+
+# Anotarlas como `Rol` hace que el verificador de tipos rechace un typo.
+ROLE_LECTOR: Rol = "lector"
+ROLE_OPERADOR: Rol = "operador"
+ROLE_ADMIN: Rol = "admin"
