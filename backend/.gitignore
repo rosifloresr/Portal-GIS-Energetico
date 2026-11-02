@@ -1,0 +1,30 @@
+# Secretos: nunca deben llegar al repo. Lo que hay que configurar
+# se documenta en los archivos .env.example (ese sí se versiona).
+.env
+.env.*
+!.env.example
+
+# La base de desarrollo contiene usuarios y hashes de contraseñas.
+*.db
+
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store

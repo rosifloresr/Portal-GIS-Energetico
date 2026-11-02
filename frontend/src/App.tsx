@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
-import { AuthPanel } from './components/AuthPanel';
+import { AuthContainer } from './components/AuthContainer';
 import { MapViewer } from './components/MapViewer';
 import type { ActivoEnergetico } from './types/gis';
 import './AppleTheme.css';
@@ -28,11 +28,18 @@ export const App: React.FC = () => {
     }
   }, [token]);
 
+  const handleLogout = () => {
+    setToken(null);
+    setActivos([]);
+  };
+
   return (
     <div className="apple-container">
-      <Header />
+      {/* Pasamos el estado de autenticación y la función de logout al Header */}
+      <Header isAuthenticated={!!token} onLogout={handleLogout} />
+
       {!token ? (
-        <AuthPanel onLoginSuccess={(newToken) => setToken(newToken)} />
+        <AuthContainer onLoginSuccess={(newToken) => setToken(newToken)} />
       ) : (
         <MapViewer activos={activos} />
       )}
