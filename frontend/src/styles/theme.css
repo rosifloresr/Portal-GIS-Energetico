@@ -1,0 +1,145 @@
+/* Colores de texto ajustados para llegar a un contraste mínimo de 4.5:1 (WCAG AA). */
+:root {
+  --apple-bg: #fbfbfd;
+  --apple-card-bg: rgba(255, 255, 255, 0.8);
+  --apple-text: #1d1d1f;
+  --apple-subtext: #6e6e73;
+  --apple-accent: #0066cc;
+  --apple-border: #d2d2d7;
+  --apple-danger: #d70015;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif;
+  background-color: var(--apple-bg);
+  color: var(--apple-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 { font-size: 30px; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 6px; }
+h2 { font-size: 19px; margin: 8px 0; }
+a { color: var(--apple-accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--apple-accent); outline-offset: 2px; }
+
+.apple-container { max-width: 980px; margin: 0 auto; padding: 40px 20px; }
+.apple-subtitle { font-size: 17px; color: var(--apple-subtext); margin-top: 0; }
+.center-note { text-align: center; color: var(--apple-subtext); }
+
+/* ---------- Componentes base ---------- */
+.apple-card {
+  background: var(--apple-card-bg);
+  backdrop-filter: blur(20px);
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.apple-button {
+  display: inline-block;
+  background-color: var(--apple-accent);
+  color: white;
+  border: 1px solid var(--apple-accent);
+  padding: 10px 20px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 980px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.apple-button:hover { opacity: 0.9; transform: scale(1.01); text-decoration: none; }
+.apple-button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.apple-button--ghost { background: transparent; color: var(--apple-accent); }
+
+.apple-input, .apple-select {
+  border: 1px solid var(--apple-border);
+  background-color: #fff;
+  font-family: inherit;
+}
+.apple-input { width: 100%; padding: 11px 14px; border-radius: 10px; font-size: 15px; }
+.apple-select { padding: 8px 14px; border-radius: 8px; font-size: 14px; }
+
+.error-message {
+  color: var(--apple-danger);
+  background: #ffebeb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  margin: 6px 0 0;
+}
+.error-message p { margin: 0 0 8px; }
+
+.status-tag { padding: 2px 8px; border-radius: 4px; font-weight: 500; font-size: 12px; }
+.status-operativo { background: #eefbf1; color: #1e7a35; }
+.status-en-falla { background: #ffebeb; color: #d70015; }
+.status-en-revision { background: #fff8e6; color: #a05a00; }
+
+/* ---------- Encabezado y pie ---------- */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 20px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--apple-border);
+}
+.brand { font-weight: 600; font-size: 18px; color: var(--apple-text); }
+.brand:hover { text-decoration: none; }
+.site-header nav { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+.site-header nav a.active { font-weight: 600; }
+.site-header nav a.apple-button { color: #fff; }
+.user-chip { font-size: 13px; color: var(--apple-subtext); background: #f0f0f3; padding: 4px 10px; border-radius: 980px; }
+.header-error { flex-basis: 100%; }
+.site-footer { text-align: center; color: var(--apple-subtext); font-size: 13px; margin-top: 40px; }
+
+/* ---------- Portada ---------- */
+.hero { text-align: center; padding: 30px 0 40px; }
+.hero h1 { font-size: 40px; max-width: 700px; margin: 0 auto 14px; }
+.hero .apple-subtitle { max-width: 640px; margin: 0 auto 24px; line-height: 1.5; }
+.hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.hero-actions .apple-button { text-decoration: none; }
+
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 24px; }
+.features .apple-card { margin-bottom: 0; }
+.features p { color: var(--apple-subtext); margin: 0; line-height: 1.5; }
+.feature-icon { font-size: 28px; }
+
+.how-to .steps { margin: 8px 0 0; padding-left: 22px; line-height: 1.8; }
+
+/* ---------- Inicio de sesión y registro ---------- */
+.auth-card { max-width: 420px; margin: 20px auto; display: flex; flex-direction: column; gap: 8px; }
+.auth-card label { font-size: 14px; font-weight: 500; margin-top: 6px; }
+.auth-card small { color: var(--apple-subtext); font-weight: 400; }
+.auth-card .apple-button { margin-top: 14px; padding: 12px; }
+.auth-alt { text-align: center; font-size: 14px; color: var(--apple-subtext); margin: 8px 0 0; }
+
+/* ---------- Mapa ---------- */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px; }
+.stat { display: flex; align-items: center; gap: 10px; margin-bottom: 0; padding: 16px 20px; }
+.stat strong { font-size: 24px; }
+.dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+.controls-card { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 16px; padding: 14px 20px; }
+.map-card { padding: 12px; }
+
+/* Altura explícita: sin ella el contenedor mide 0 px y Leaflet no dibuja nada. */
+.map-box { height: 520px; width: 100%; border-radius: 12px; overflow: hidden; position: relative; z-index: 0; }
+
+.legend { list-style: none; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; padding: 10px 6px 0; margin: 0; font-size: 13px; color: var(--apple-subtext); }
+.legend li { display: flex; align-items: center; gap: 6px; }
+.legend-dot { display: inline-block; border-radius: 50%; background: #c7c7cc; }
+.popup-content h3 { margin: 0 0 6px; font-size: 16px; }
+.popup-content p { margin: 4px 0; }
+
+@media (max-width: 600px) {
+  .stats { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 30px; }
+  .map-box { height: 420px; }
+}
