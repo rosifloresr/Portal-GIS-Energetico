@@ -1,35 +1,46 @@
-import React from 'react';
+import { useState } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 
-interface HeaderProps {
-  isAuthenticated: boolean;
-  onLogout?: () => void;
+export function Header() {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+  const [errorSalida, setErrorSalida] = useState(false);
+
+  const salir = async () => {
+    setErrorSalida(false);
+    try {
+      await logout();
+      navigate('/', { replace: true });
+    } catch {
+      // La sesión sigue abierta en el servidor: hay que avisarlo en vez de simular que se cerró.
+      setErrorSalida(true);
+    }
+  };
+
+  return (
+    <header className="site-header">
+      <Link to="/" className="brand">⚡ Portal GIS Energético</Link>
+      <nav aria-label="Principal">
+        <NavLink to="/">Inicio</NavLink>
+        {user && <NavLink to="/mapa">Mapa</NavLink>}
+        {user ? (
+          <>
+            <span className="user-chip">{user.username} · {user.role}</span>
+            <button className="apple-button apple-button--ghost" onClick={salir}>Cerrar sesión</button>
+          </>
+        ) : (
+          <>
+            <NavLink to="/login">Iniciar sesión</NavLink>
+            <Link to="/registro" className="apple-button">Registrarse</Link>
+          </>
+        )}
+      </nav>
+      {errorSalida && (
+        <p className="error-message header-error" role="alert">
+          No se pudo cerrar la sesión. Revisá tu conexión e intentá de nuevo.
+        </p>
+      )}
+    </header>
+  );
 }
-
-export const Header: React.FC<HeaderProps> = ({ isAuthenticated, onLogout }) => (
-  <header className="apple-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-    <div>
-      <h1 style={{ margin: 0, fontSize: '28px' }}>Portal de Infraestructura Energética</h1>
-      <p className="apple-subtitle" style={{ margin: 0 }}>Monitoreo de Red Eléctrica & Incidencias GIS</p>
-    </div>
-    
-    {/* El botón de logout solo se muestra si el usuario está autenticado */}
-    {isAuthenticated && onLogout && (
-      <button 
-        onClick={onLogout}
-        style={{
-          background: '#ff3b30',
-          color: 'white',
-          border: 'none',
-          padding: '8px 16px',
-          borderRadius: '980px',
-          cursor: 'pointer',
-          fontSize: '14px',
-          fontWeight: 500,
-          transition: 'opacity 0.2s'
-        }}
-      >
-        Cerrar Sesión
-      </button>
-    )}
-  </header>
-);
